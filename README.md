@@ -23,6 +23,29 @@ Before you begin, ensure you have the following:
 
 ## Getting Started
 
+### 🚀 Quick Setup (Recommended)
+
+We provide automated setup scripts to streamline the configuration process:
+
+**Linux/macOS:**
+```bash
+./setup.sh
+```
+
+**Windows:**
+```cmd
+setup.bat
+```
+
+**Verify Setup:**
+```bash
+npm run verify
+```
+
+### 📋 Manual Setup
+
+If you prefer manual setup:
+
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
@@ -55,6 +78,8 @@ Before you begin, ensure you have the following:
    ```
 
 5. **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
+
+For detailed setup instructions, see [SETUP.md](./SETUP.md).
 
 ## Configuration
 
