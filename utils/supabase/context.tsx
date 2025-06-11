@@ -13,7 +13,7 @@ export function SupabaseProvider({ children }: { children: ReactNode }) {
     const supabase = useMemo(() => {
         return createClient<Database>(
             process.env.NEXT_PUBLIC_SUPABASE_URL!,
-            process.env.NEXT_PUBLIC_SUPABASE_KEY!,
+            process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
             {
                 global: {
                     fetch: async (url, options = {}) => {
