@@ -156,3 +156,73 @@ To implement the generated documentation from CodeGuide:
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Stripe 支付功能集成说明
+
+### 1. 后端 API 路由
+
+已在 `app/api/create-payment-intent/route.ts` 添加 Stripe 支付意图接口，支持 POST 请求。
+- 参数：`amount`（单位：分），`currency`（如 'usd'）
+- 返回：`clientSecret`
+
+你需要在环境变量中设置 `STRIPE_SECRET_KEY`，或直接在代码中替换为你的 Stripe Secret Key。
+
+### 2. 前端调用示例
+
+1. 安装 Stripe 前端依赖：
+   ```bash
+   npm install @stripe/stripe-js @stripe/react-stripe-js
+   ```
+2. 在 React 组件中集成 Stripe Elements，调用 `/api/create-payment-intent` 获取 `clientSecret`，并发起支付。
+
+```tsx
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+
+const stripePromise = loadStripe('你的pk_test_xxx公钥');
+
+function CheckoutForm() {
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // 1. 调用后端获取 clientSecret
+    const res = await fetch('/api/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount: 1000, currency: 'usd' })
+    });
+    const { clientSecret } = await res.json();
+    // 2. 使用 Stripe Elements 发起支付
+    const result = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+      },
+    });
+    if (result.error) {
+      alert(result.error.message);
+    } else if (result.paymentIntent.status === 'succeeded') {
+      alert('支付成功！');
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <CardElement />
+      <button type="submit" disabled={!stripe}>支付</button>
+    </form>
+  );
+}
+
+export default function StripeCheckout() {
+  return (
+    <Elements stripe={stripePromise}>
+      <CheckoutForm />
+    </Elements>
+  );
+}
+```
+
+---
+如需进一步帮助，请参考 Stripe 官方文档或联系开发者。
