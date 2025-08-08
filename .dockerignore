@@ -1,0 +1,71 @@
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Next.js
+.next/
+out/
+
+# Production build
+dist
+
+# Environment variables
+.env*.local
+.env
+
+# Log files
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# macOS
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+CONTRIBUTING.md
+LICENSE
