@@ -1,0 +1,51 @@
+# Build outputs
+.next
+out
+dist
+build
+
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# nyc test coverage
+.nyc_output
+
+# Environment variables
+.env*
+
+# Docker
+Dockerfile*
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# IDE files
+.vscode
+.idea
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Generated files
+*.d.ts
+
+# Database
+*.sqlite
+*.db

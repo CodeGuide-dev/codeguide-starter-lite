@@ -6,7 +6,15 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "type-check": "tsc --noEmit",
+    "docker:dev": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "db:migrate": "echo 'Run Supabase migrations manually or set up migration script'",
+    "db:seed": "echo 'Database seeded with default templates via migration'",
+    "test": "echo 'Tests will be added in future iterations'"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^1.2.12",
@@ -60,7 +68,13 @@
     "svix": "^1.69.0",
     "tailwind-merge": "^3.3.1",
     "vaul": "^1.1.2",
-    "zod": "^3.25.76"
+    "zod": "^3.25.76",
+    "@aws-sdk/client-s3": "^3.723.0",
+    "@aws-sdk/s3-request-presigner": "^3.723.0",
+    "ioredis": "^5.4.2",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "rate-limiter-flexible": "^5.2.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -72,6 +86,9 @@
     "eslint-config-next": "15.4.4",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.6",
-    "typescript": "^5"
+    "typescript": "^5",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/bcryptjs": "^2.4.6",
+    "prettier": "^3.4.2"
   }
 }

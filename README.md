@@ -1,65 +1,105 @@
 [![CodeGuide](/codeguide-backdrop.svg)](https://codeguide.dev)
 
-# CodeGuide Starter Kit
+# CodeGuide Starter Kit Lite
 
-A modern web application starter template built with Next.js 15, featuring authentication, database integration, AI capabilities, and dark mode support.
+A comprehensive web application framework built with Next.js 15, featuring full-stack development tools, AI integration, and production-ready infrastructure.
 
 ## Tech Stack
 
+### Frontend
 - **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
 - **Language:** TypeScript
-- **Authentication:** [Clerk](https://clerk.com/)
-- **Database:** [Supabase](https://supabase.com/)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
 - **UI Components:** [shadcn/ui](https://ui.shadcn.com/)
-- **AI Integration:** [Vercel AI SDK](https://sdk.vercel.ai/)
 - **Theme System:** [next-themes](https://github.com/pacocoursey/next-themes)
+
+### Backend & Database
+- **Database:** [PostgreSQL](https://postgresql.org/) with [Supabase](https://supabase.com/)
+- **Caching:** [Redis](https://redis.io/) for sessions and rate limiting
+- **Authentication:** [Clerk](https://clerk.com/)
+- **File Storage:** [AWS S3](https://aws.amazon.com/s3/)
+
+### AI & APIs
+- **AI Integration:** [Vercel AI SDK](https://sdk.vercel.ai/)
+- **Language Models:** OpenAI GPT-4, Anthropic Claude
+- **Rate Limiting:** Advanced rate limiting with Redis
+
+### Infrastructure
+- **Containerization:** Docker with Docker Compose
+- **CI/CD:** GitHub Actions
+- **Production Deploy:** Vercel/AWS with monitoring
 
 ## Prerequisites
 
 Before you begin, ensure you have the following:
 - Node.js 18+ installed
+- Docker and Docker Compose for development environment
 - A [Clerk](https://clerk.com/) account for authentication
 - A [Supabase](https://supabase.com/) account for database
-- Optional: [OpenAI](https://platform.openai.com/) or [Anthropic](https://console.anthropic.com/) API key for AI features
+- Redis instance (local or cloud)
+- AWS account for S3 storage
+- [OpenAI](https://platform.openai.com/) API key for AI features
 - Generated project documents from [CodeGuide](https://codeguide.dev/) for best development experience
 
 ## Getting Started
 
+### Quick Start (Docker)
+
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd codeguide-starter-kit
+   cd codeguide-starter-kit-lite-v2
    ```
 
-2. **Install dependencies**
+2. **Environment setup**
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local with your API keys and configuration
+   ```
+
+3. **Start with Docker**
+   ```bash
+   npm run docker:dev
+   ```
+
+4. **Install frontend dependencies and start Next.js**
    ```bash
    npm install
-   # or
-   yarn install
-   # or
-   pnpm install
+   npm run dev
    ```
 
-3. **Environment Variables Setup**
-   - Copy the `.env.example` file to `.env.local`:
-     ```bash
-     cp .env.example .env.local
-     ```
-   - Fill in the environment variables in `.env.local` (see Configuration section below)
+5. **Open [http://localhost:3000](http://localhost:3000)**
 
-4. **Start the development server**
+### Manual Setup
+
+1. **Clone and install**
+   ```bash
+   git clone <repository-url>
+   cd codeguide-starter-kit-lite-v2
+   npm install
+   ```
+
+2. **Set up services** (PostgreSQL, Redis, S3)
+   - See Configuration section below for detailed setup
+
+3. **Environment variables**
+   ```bash
+   cp .env.example .env.local
+   # Fill in all required environment variables
+   ```
+
+4. **Database setup**
+   ```bash
+   # Run migrations (when database is connected)
+   npm run db:migrate
+   ```
+
+5. **Start development**
    ```bash
    npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
    ```
 
-5. **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
-
-The homepage includes a setup dashboard with direct links to configure each service.
+The homepage includes a comprehensive setup dashboard showing the status of all services.
 
 ## Configuration
 
