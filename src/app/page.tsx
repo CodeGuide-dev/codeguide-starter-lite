@@ -1,190 +1,126 @@
 "use client";
 
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import Chat from "@/components/chat";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { checkEnvironmentVariables } from "@/lib/env-check";
 import {
-  Copy,
-  CheckCircle,
-  AlertCircle,
+  Terminal,
+  Code,
   Zap,
-  Database,
-  Shield,
-  ExternalLink,
+  ArrowRight,
+  Github,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import Image from "next/image";
 
 export default function Home() {
-  const envStatus = checkEnvironmentVariables();
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
+      {/* Header */}
+      <header className="absolute top-0 right-0 p-6">
+        <ThemeToggle />
+      </header>
+
       {/* Hero Section */}
-      <div className="text-center py-12 sm:py-16 relative px-4">
-        <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <ThemeToggle />
-            <SignedOut>
-              <SignInButton>
-                <Button size="sm" className="text-xs sm:text-sm">
-                  Sign In
-                </Button>
-              </SignInButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
+      <main className="container mx-auto px-6 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Logo/Icon */}
+          <div className="mb-8">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full border-2 border-black dark:border-white mb-6">
+              <Terminal className="w-10 h-10" />
+            </div>
           </div>
-        </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4">
-          <Image
-            src="/codeguide-logo.png"
-            alt="CodeGuide Logo"
-            width={50}
-            height={50}
-            className="rounded-xl sm:w-[60px] sm:h-[60px]"
-          />
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent font-parkinsans">
-            CodeGuide Starter
+          {/* Main Heading */}
+          <h1 className="text-6xl md:text-8xl font-light mb-6 tracking-tight">
+            Codespace
           </h1>
-        </div>
-        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-          Build faster with your AI coding agent
-        </p>
-      </div>
+          
+          {/* Subtitle */}
+          <p className="text-xl md:text-2xl font-light mb-12 max-w-2xl mx-auto leading-relaxed">
+            Your intelligent AI CLI companion for seamless development workflows
+          </p>
 
-      <main className="container mx-auto px-4 sm:px-6 pb-12 sm:pb-8 max-w-5xl">
-        {envStatus.allConfigured ? (
-          <div className="text-center mb-8">
-            <div className="text-4xl sm:text-5xl mb-2">🎉</div>
-            <div className="font-bold text-lg sm:text-xl mb-1">All Set!</div>
-            <div className="text-sm sm:text-base text-muted-foreground">
-              Ready for development
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
+            <Button 
+              size="lg" 
+              className="bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 font-light text-lg px-8 py-4"
+            >
+              Get Started
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="border-black text-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black font-light text-lg px-8 py-4"
+            >
+              <Github className="mr-2 w-5 h-5" />
+              View on GitHub
+            </Button>
+          </div>
+
+          {/* Features */}
+          <div className="grid md:grid-cols-3 gap-12 max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-black dark:border-white mb-6">
+                <Code className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-light mb-4">Intelligent Code Generation</h3>
+              <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed">
+                Generate, refactor, and optimize code with AI-powered suggestions directly from your terminal
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-black dark:border-white mb-6">
+                <Terminal className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-light mb-4">Native CLI Experience</h3>
+              <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed">
+                Seamlessly integrated into your existing workflow with intuitive command-line interfaces
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-black dark:border-white mb-6">
+                <Zap className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-light mb-4">Lightning Fast</h3>
+              <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed">
+                Optimized for speed and efficiency, delivering instant responses to your development needs
+              </p>
             </div>
           </div>
-        ) : (
-          <>
-            <div className="text-center mb-6">
-              <div className="text-4xl sm:text-5xl mb-2">⚠️</div>
-              <div className="font-semibold text-lg sm:text-xl mb-1">
-                Setup Required
-              </div>
-              <div className="text-sm sm:text-base text-muted-foreground">
-                Retrieve keys for environment variables
-              </div>
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-              {/* Clerk */}
-              <div className="text-center p-3 sm:p-4 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/10 dark:to-indigo-900/10">
-                <div className="flex justify-center mb-3">
-                  {envStatus.clerk ? (
-                    <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-green-500" />
-                  ) : (
-                    <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-blue-500" />
-                  )}
+          {/* Command Preview */}
+          <div className="mt-20">
+            <div className="bg-black dark:bg-white text-white dark:text-black rounded-lg p-6 max-w-2xl mx-auto text-left" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
+              <div className="flex items-center mb-4">
+                <div className="flex space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
                 </div>
-                <div className="font-semibold mb-2 text-sm sm:text-base">
-                  Clerk Auth
-                </div>
-                <div className="text-xs text-muted-foreground mb-3">
-                  {envStatus.clerk ? "✓ Ready" : "Setup required"}
-                </div>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() =>
-                    window.open("https://dashboard.clerk.com", "_blank")
-                  }
-                  className="w-full text-xs sm:text-sm"
-                >
-                  <ExternalLink className="w-3 h-3 mr-1" />
-                  Dashboard
-                </Button>
               </div>
-
-              {/* Supabase */}
-              <div className="text-center p-3 sm:p-4 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/10 dark:to-emerald-900/10">
-                <div className="flex justify-center mb-3">
-                  {envStatus.supabase ? (
-                    <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-green-500" />
-                  ) : (
-                    <Database className="w-6 h-6 sm:w-8 sm:h-8 text-green-500" />
-                  )}
+              <div className="space-y-2 text-sm">
+                <div className="flex">
+                  <span className="text-gray-400 dark:text-gray-600">$</span>
+                  <span className="ml-2">codespace generate --component LoginForm</span>
                 </div>
-                <div className="font-semibold mb-2 text-sm sm:text-base">
-                  Supabase DB
+                <div className="text-gray-400 dark:text-gray-600">
+                  ✨ Generating React component...
                 </div>
-                <div className="text-xs text-muted-foreground mb-3">
-                  {envStatus.supabase ? "✓ Ready" : "Setup required"}
+                <div className="text-gray-400 dark:text-gray-600">
+                  📝 Created LoginForm.tsx with TypeScript support
                 </div>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() =>
-                    window.open("https://supabase.com/dashboard", "_blank")
-                  }
-                  className="w-full text-xs sm:text-sm"
-                >
-                  <ExternalLink className="w-3 h-3 mr-1" />
-                  Dashboard
-                </Button>
-              </div>
-
-              {/* AI */}
-              <div className="text-center p-3 sm:p-4 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/10 dark:to-pink-900/10 sm:col-span-2 md:col-span-1">
-                <div className="flex justify-center mb-3">
-                  {envStatus.ai ? (
-                    <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-green-500" />
-                  ) : (
-                    <Zap className="w-6 h-6 sm:w-8 sm:h-8 text-purple-500" />
-                  )}
+                <div className="text-gray-400 dark:text-gray-600">
+                  🎨 Added Tailwind CSS styling
                 </div>
-                <div className="font-semibold mb-2 text-sm sm:text-base">
-                  AI SDK
-                </div>
-                <div className="text-xs text-muted-foreground mb-3">
-                  {envStatus.ai ? "✓ Ready" : "Optional"}
-                </div>
-                <div className="grid grid-cols-2 gap-1 sm:gap-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() =>
-                      window.open("https://platform.openai.com", "_blank")
-                    }
-                    className="text-xs px-1 sm:px-2"
-                  >
-                    OpenAI
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() =>
-                      window.open("https://console.anthropic.com", "_blank")
-                    }
-                    className="text-xs px-1 sm:px-2"
-                  >
-                    Anthropic
-                  </Button>
+                <div className="text-gray-400 dark:text-gray-600">
+                  ✅ Component ready!
                 </div>
               </div>
             </div>
-          </>
-        )}
-
-        {/* Chat Section */}
-        <SignedIn>
-          {envStatus.allConfigured && (
-            <div className="mt-6 sm:mt-8">
-              <Chat />
-            </div>
-          )}
-        </SignedIn>
+          </div>
+        </div>
       </main>
     </div>
   );
