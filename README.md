@@ -150,6 +150,8 @@ This starter includes modern Clerk + Supabase integration:
 - **Example migrations** with various RLS patterns (user-owned, public/private, collaboration)
 - **Server-side client** with automatic Clerk token handling
 
+Pull requests that change SQL in `supabase/migrations` run [RattleCheck](.github/workflows/rattlecheck.yml). It flags new high or critical permission findings at the migration line. The check runs on committed SQL and needs no Clerk or Supabase credentials.
+
 ## AI Coding Agent Integration
 
 This starter is optimized for AI coding agents:
